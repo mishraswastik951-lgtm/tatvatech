@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Indian Science & Technology | Journey Through Time</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Philosopher:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --deep-orange: #FF6B35;
+            --sacred-red: #8B0000;
+            --ancient-bronze: #CD7F32;
+            --mystic-purple: #4A0E4E;
+            --dark-bg: #0a0a0a;
+            --text-light: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Philosopher', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--primary-gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+        }
+
+        /* Animated Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--primary-gold) 35px, var(--primary-gold) 36px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--ancient-bronze) 35px, var(--ancient-bronze) 36px);
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(70px, 70px);
+            }
+        }
+
+        /* Particle System */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            25% {
+                transform: translateY(-100px) translateX(50px);
+            }
+
+            50% {
+                transform: translateY(-200px) translateX(-30px);
+            }
+
+            75% {
+                transform: translateY(-300px) translateX(70px);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            background: rgba(10, 10, 10, 0.95);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 80px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-gold), var(--deep-orange), var(--ancient-bronze));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: titleReveal 1.5s ease-out;
+        }
+
+        @keyframes titleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: subtitleReveal 1.5s ease-out 0.3s both;
+        }
+
+        @keyframes subtitleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--ancient-bronze));
+            color: var(--dark-bg);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: buttonReveal 1.5s ease-out 0.6s both;
+        }
+
+        @keyframes buttonReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* 3D Rotating Symbol */
+        .rotating-symbol {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            right: 10%;
+            animation: rotate3D 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes rotate3D {
+            0% {
+                transform: rotateY(0deg) rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateY(360deg) rotateZ(360deg);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        .scroll-indicator span {
+            color: var(--primary-gold);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-indicator .arrow {
+            width: 30px;
+            height: 30px;
+            border-left: 2px solid var(--primary-gold);
+            border-bottom: 2px solid var(--primary-gold);
+            transform: rotate(-45deg);
+        }
+
+        /* Section Styles */
+        section {
+            min-height: 100vh;
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 60px;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--deep-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+        }
+
+        /* Timeline Section */
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-gold), var(--deep-orange), var(--ancient-bronze));
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 100px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(139, 0, 0, 0.1));
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+            border-color: var(--primary-gold);
+        }
+
+        .timeline-date {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        .timeline-content h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--deep-orange);
+        }
+
+        .timeline-content p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 4px solid var(--dark-bg);
+            box-shadow: 0 0 20px var(--primary-gold);
+            z-index: 10;
+        }
+
+        /* Scientists Grid */
+        .scientists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .scientist-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(74, 14, 78, 0.2));
+            border-radius: 30px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .scientist-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent);
+            transform: rotate(0deg);
+            transition: transform 0.8s ease;
+        }
+
+        .scientist-card:hover::before {
+            transform: rotate(180deg);
+        }
+
+        .scientist-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 30px 80px rgba(212, 175, 55, 0.4);
+            border-color: var(--primary-gold);
+        }
+
+        .scientist-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--deep-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            border: 5px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            z-index: 2;
+            transition: all 0.5s ease;
+        }
+
+        .scientist-card:hover .scientist-image {
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        .scientist-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            text-align: center;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .scientist-card .subtitle {
+            text-align: center;
+            color: var(--deep-orange);
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .scientist-card p {
+            line-height: 1.8;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .scientist-card .achievements {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .scientist-card .achievements h4 {
+            color: var(--ancient-bronze);
+            margin-bottom: 10px;
+        }
+
+        .scientist-card .achievements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .scientist-card .achievements li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .scientist-card .achievements li::before {
+            content: '⦿';
+            position: absolute;
+            left: 0;
+            color: var(--primary-gold);
+        }
+
+        /* Vedic Mathematics Section */
+        .vedic-math-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .math-card {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.2), rgba(212, 175, 55, 0.1));
+            padding: 35px;
+            border-radius: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .math-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .math-card:hover::after {
+            width: 500px;
+            height: 500px;
+        }
+
+        .math-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 25px 70px rgba(212, 175, 55, 0.3);
+        }
+
+        .math-card h3 {
+            font-size: 26px;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .math-card .formula {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            color: var(--deep-orange);
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .math-card p {
+            line-height: 1.8;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Modern Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .application-card {
+            background: linear-gradient(135deg, rgba(74, 14, 78, 0.3), rgba(205, 127, 50, 0.1));
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .application-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .application-card:hover::before {
+            left: 100%;
+        }
+
+        .application-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 30px 80px rgba(212, 175, 55, 0.4);
+        }
+
+        .app-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .application-card h3 {
+            font-size: 28px;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        .application-card .ancient-tech {
+            color: var(--deep-orange);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .application-card .modern-use {
+            color: var(--ancient-bronze);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* Metallurgy Section */
+        .metallurgy-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .metal-card {
+            perspective: 1000px;
+            height: 400px;
+        }
+
+        .metal-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .metal-card:hover .metal-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .metal-card-front,
+        .metal-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 30px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .metal-card-front {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 0, 0, 0.2));
+        }
+
+        .metal-card-back {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(205, 127, 50, 0.2));
+            transform: rotateY(180deg);
+        }
+
+        .metal-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .metal-icon {
+            font-size: 80px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Astronomy Section */
+        .astronomy-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .constellation {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .astro-card {
+            background: linear-gradient(135deg, rgba(74, 14, 78, 0.4), transparent);
+            padding: 35px;
+            border-radius: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .astro-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .astro-card:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .astro-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 80px rgba(212, 175, 55, 0.5);
+        }
+
+        .astro-card h3 {
+            font-size: 26px;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .astro-card p {
+            line-height: 1.8;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(139, 0, 0, 0.1));
+            padding: 60px;
+            border-radius: 30px;
+            margin-top: 60px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-align: center;
+        }
+
+        .demo-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--deep-orange), var(--sacred-red));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .demo-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(74, 14, 78, 0.3));
+            padding: 60px 50px 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            padding: 8px 0;
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-gold);
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .section-title {
+                font-size: 40px;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-line {
+                left: 20px;
+            }
+
+            .constellation {
+                grid-template-columns: 1fr;
+            }
+
+            .scientists-grid,
+            .applications-grid,
+            .metallurgy-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .mandala-loader {
+            width: 150px;
+            height: 150px;
+            border: 3px solid transparent;
+            border-top-color: var(--primary-gold);
+            border-right-color: var(--deep-orange);
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        .mandala-loader::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 3px solid transparent;
+            border-top-color: var(--ancient-bronze);
+            border-radius: 50%;
+            animation: spin 3s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--deep-orange), var(--ancient-bronze));
+            z-index: 10001;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 0.1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="mandala-loader"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Background Elements -->
+    <div class="bg-pattern"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">⚛ TattvaTech</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#scientists">Scientists</a></li>
+            <li><a href="#mathematics">Vedic Math</a></li>
+            <li><a href="#astronomy">Astronomy</a></li>
+            <li><a href="#metallurgy">Metallurgy</a></li>
+            <li><a href="#applications">Modern Use</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Ancient Indian Science</h1>
+            <p>Journey Through 5000 Years of Innovation</p>
+            <a href="#timeline" class="cta-button">Begin Exploration</a>
+        </div>
+        <svg class="rotating-symbol" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="var(--primary-gold)" stroke-width="2" opacity="0.5" />
+            <circle cx="100" cy="100" r="60" fill="none" stroke="var(--deep-orange)" stroke-width="2" opacity="0.5" />
+            <circle cx="100" cy="100" r="40" fill="none" stroke="var(--ancient-bronze)" stroke-width="2"
+                opacity="0.5" />
+            <circle cx="100" cy="100" r="20" fill="none" stroke="var(--primary-gold)" stroke-width="2" opacity="0.5" />
+            <path d="M100,20 L120,80 L100,60 L80,80 Z" fill="var(--primary-gold)" opacity="0.6" />
+            <path d="M180,100 L120,120 L140,100 L120,80 Z" fill="var(--deep-orange)" opacity="0.6" />
+            <path d="M100,180 L80,120 L100,140 L120,120 Z" fill="var(--ancient-bronze)" opacity="0.6" />
+            <path d="M20,100 L80,80 L60,100 L80,120 Z" fill="var(--primary-gold)" opacity="0.6" />
+        </svg>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="arrow"></div>
+        </div>
+    </section>
+
+    <!-- Interactive Timeline -->
+    <section id="timeline">
+        <h2 class="section-title">Timeline of Discoveries</h2>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">3000 BCE</div>
+                    <h3>Indus Valley Mathematics</h3>
+                    <p>Advanced urban planning with precise measurements, standardized weights and measures, and
+                        sophisticated drainage systems demonstrating early mathematical and engineering knowledge.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1500 BCE</div>
+                    <h3>Vedic Period Mathematics</h3>
+                    <p>Development of Sulba Sutras - ancient texts containing geometric principles for altar
+                        construction, including early concepts of the Pythagorean theorem.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">600 BCE</div>
+                    <h3>Sushruta Samhita</h3>
+                    <p>Sushruta compiles comprehensive surgical techniques including plastic surgery, cataract surgery,
+                        and over 300 surgical procedures with 125 surgical instruments.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">350 BCE</div>
+                    <h3>Chanakya's Arthashastra</h3>
+                    <p>Revolutionary treatise on economics, politics, military strategy, and state craft. Established
+                        principles of governance and economic management.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">499 CE</div>
+                    <h3>Aryabhata's Masterwork</h3>
+                    <p>Aryabhatiya introduces concept of zero, accurate calculation of π (pi), astronomical
+                        calculations, and explanation of solar and lunar eclipses.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">400 CE</div>
+                    <h3>Delhi Iron Pillar</h3>
+                    <p>Constructed using advanced metallurgical techniques. Stands rust-free for 1600+ years,
+                        demonstrating superior knowledge of corrosion-resistant iron production.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">628 CE</div>
+                    <h3>Brahmagupta's Mathematics</h3>
+                    <p>First to give rules for computing with zero, negative numbers, and solutions to quadratic
+                        equations. Foundation for modern algebra.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scientists Profiles -->
+    <section id="scientists">
+        <h2 class="section-title">Legendary Scientists</h2>
+        <div class="scientists-grid">
+            <!-- Aryabhata -->
+            <div class="scientist-card">
+                <div class="scientist-image">🔭</div>
+                <h3>Aryabhata</h3>
+                <div class="subtitle">476 CE - 550 CE</div>
+                <p>The father of Indian astronomy and mathematics, Aryabhata revolutionized mathematical thinking with
+                    groundbreaking concepts that influenced scholars worldwide.</p>
+                <div class="achievements">
+                    <h4>Major Contributions:</h4>
+                    <ul>
+                        <li>Introduced the concept of zero and place value system</li>
+                        <li>Calculated π (pi) to 3.1416, accurate to 4 decimal places</li>
+                        <li>Explained that Earth rotates on its axis</li>
+                        <li>Calculated Earth's circumference as 24,835 miles (99% accurate)</li>
+                        <li>Developed accurate methods for eclipse predictions</li>
+                        <li>Created trigonometric tables and sine function</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sushruta -->
+            <div class="scientist-card">
+                <div class="scientist-image">⚕️</div>
+                <h3>Sushruta</h3>
+                <div class="subtitle">600 BCE</div>
+                <p>The father of surgery and plastic surgery, Sushruta's medical knowledge was centuries ahead of its
+                    time, establishing foundations that modern medicine still builds upon.</p>
+                <div class="achievements">
+                    <h4>Major Contributions:</h4>
+                    <ul>
+                        <li>Performed over 300 types of surgical operations</li>
+                        <li>Invented rhinoplasty (nose reconstruction surgery)</li>
+                        <li>Designed 125 surgical instruments</li>
+                        <li>Pioneered cataract surgery techniques</li>
+                        <li>Established principles of plastic surgery</li>
+                        <li>Documented detailed anatomy and physiology</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Chanakya -->
+            <div class="scientist-card">
+                <div class="scientist-image">📜</div>
+                <h3>Chanakya (Kautilya)</h3>
+                <div class="subtitle">375 BCE - 283 BCE</div>
+                <p>Ancient India's greatest political strategist, economist, and philosopher. His Arthashastra remains
+                    one of the most influential works on statecraft and economics.</p>
+                <div class="achievements">
+                    <h4>Major Contributions:</h4>
+                    <ul>
+                        <li>Authored Arthashastra - treatise on economics and governance</li>
+                        <li>Developed theories of taxation and economic policy</li>
+                        <li>Established principles of diplomacy and warfare</li>
+                        <li>Created comprehensive systems for state administration</li>
+                        <li>Formulated theories on law and justice</li>
+                        <li>United India under Mauryan Empire</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Brahmagupta -->
+            <div class="scientist-card">
+                <div class="scientist-image">➗</div>
+                <h3>Brahmagupta</h3>
+                <div class="subtitle">598 CE - 668 CE</div>
+                <p>Master mathematician and astronomer who gave the world its first rules for arithmetic with zero and
+                    negative numbers, foundations of modern algebra.</p>
+                <div class="achievements">
+                    <h4>Major Contributions:</h4>
+                    <ul>
+                        <li>First to establish rules for computing with zero</li>
+                        <li>Developed rules for negative numbers</li>
+                        <li>Solutions for quadratic equations</li>
+                        <li>Brahmagupta's theorem in geometry</li>
+                        <li>Accurate astronomical calculations</li>
+                        <li>Interpolation formula for calculations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Charaka -->
+            <div class="scientist-card">
+                <div class="scientist-image">🌿</div>
+                <h3>Charaka</h3>
+                <div class="subtitle">300 BCE</div>
+                <p>Father of Ayurvedic medicine, Charaka's comprehensive medical treatise laid the foundation for
+                    holistic healthcare and preventive medicine.</p>
+                <div class="achievements">
+                    <h4>Major Contributions:</h4>
+                    <ul>
+                        <li>Authored Charaka Samhita - foundation of Ayurveda</li>
+                        <li>Documented 100,000 herbal formulations</li>
+                        <li>Established principles of preventive medicine</li>
+                        <li>Detailed human anatomy and physiology</li>
+                        <li>Developed diagnostic techniques</li>
+                        <li>Created comprehensive pharmacology</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Varahamihira -->
+            <div class="scientist-card">
+                <div class="scientist-image">🌟</div>
+                <h3>Varahamihira</h3>
+                <div class="subtitle">505 CE - 587 CE</div>
+                <p>Renowned astronomer, mathematician, and astrologer whose encyclopedic works covered astronomy,
+                    mathematics, and natural sciences.</p>
+                <div class="achievements">
+                    <h4>Major Contributions:</h4>
+                    <ul>
+                        <li>Compiled Pancha Siddhantika - five astronomical treatises</li>
+                        <li>Advanced knowledge in trigonometry</li>
+                        <li>Studied water divining and hydrology</li>
+                        <li>Developed architectural principles</li>
+                        <li>Contributed to combinatorics</li>
+                        <li>Accurate astronomical predictions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vedic Mathematics -->
+    <section id="mathematics">
+        <h2 class="section-title">Vedic Mathematics</h2>
+        <div class="vedic-math-container">
+            <div class="math-card">
+                <h3>🔢 Vertically & Crosswise</h3>
+                <div class="formula">23 × 12 = (2×1)(2×2 + 3×1)(3×2) = 276</div>
+                <p>The Nikhilam Sutra provides an elegant method for multiplication by decomposing numbers and applying
+                    cross-multiplication patterns. This ancient technique is faster than conventional methods.</p>
+            </div>
+
+            <div class="math-card">
+                <h3>⚡ Base Method</h3>
+                <div class="formula">98 × 97 = (100-2)(100-3) = 9506</div>
+                <p>Using bases (typically powers of 10) to simplify complex calculations. The Nikhilam method shows:
+                    (a-x)(a-y) = a(a-x-y) + xy where a is the base.</p>
+            </div>
+
+            <div class="math-card">
+                <h3>🎯 Straight Division</h3>
+                <div class="formula">1/19 = 0.052631578947368421...</div>
+                <p>The Dhvajanka method enables rapid division through a flag digit system, allowing mental calculation
+                    of complex divisions with remarkable speed.</p>
+            </div>
+
+            <div class="math-card">
+                <h3>🌟 Squaring Near Base</h3>
+                <div class="formula">103² = (103+3)(100) + 3² = 10609</div>
+                <p>For numbers near a base, use: (base+n)² = base(base+2n) + n². This Vedic sutra dramatically
+                    simplifies square calculations.</p>
+            </div>
+
+            <div class="math-card">
+                <h3>💫 Digit Sum Method</h3>
+                <div class="formula">Verification: If 23×45=1035, then (2+3)(4+5)=45 ≡ 1+0+3+5=9</div>
+                <p>The Beejank (digital root) technique provides instant verification of arithmetic operations through
+                    modular arithmetic principles.</p>
+            </div>
+
+            <div class="math-card">
+                <h3>🔮 Algebraic Formulas</h3>
+                <div class="formula">(x+a)(x+b) = x² + (a+b)x + ab</div>
+                <p>Vedic mathematics provides intuitive methods for solving quadratic equations and polynomial
+                    operations through geometric visualization.</p>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- Astronomy Section -->
+    <section id="astronomy">
+        <h2 class="section-title">Ancient Astronomy</h2>
+        <div class="astronomy-container">
+            <div class="constellation">
+                <div class="astro-card">
+                    <h3>🌍 Earth's Rotation</h3>
+                    <p>Aryabhata (499 CE) correctly proposed that the Earth rotates on its axis, explaining the apparent
+                        movement of stars. This was 1000 years before Copernicus.</p>
+                </div>
+
+                <div class="astro-card">
+                    <h3>🌑 Eclipse Predictions</h3>
+                    <p>Ancient Indian astronomers accurately predicted solar and lunar eclipses using sophisticated
+                        mathematical models based on the moon's orbit and shadow calculations.</p>
+                </div>
+
+                <div class="astro-card">
+                    <h3>📏 Earth's Circumference</h3>
+                    <p>Aryabhata calculated Earth's circumference as 24,835 miles (actual: 24,901 miles) - 99.7%
+                        accurate, achieved through astronomical observations and mathematics.</p>
+                </div>
+
+                <div class="astro-card">
+                    <h3>⭐ Star Catalogs</h3>
+                    <p>The Nakshatra system divided the celestial sphere into 27 (or 28) lunar mansions, creating
+                        detailed star catalogs for navigation and timekeeping.</p>
+                </div>
+
+                <div class="astro-card">
+                    <h3>🔭 Planetary Motion</h3>
+                    <p>Detailed observations of planetary movements led to accurate models of planetary orbits,
+                        including calculations of synodic periods and conjunctions.</p>
+                </div>
+
+                <div class="astro-card">
+                    <h3>⏰ Time Measurement</h3>
+                    <p>Developed precise time units from Paramanu (26.3 microseconds) to Kalpa (4.32 billion years),
+                        demonstrating understanding of vast cosmic timescales.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Metallurgy Section -->
+    <section id="metallurgy">
+        <h2 class="section-title">Advanced Metallurgy</h2>
+        <div class="metallurgy-showcase">
+            <div class="metal-card">
+                <div class="metal-card-inner">
+                    <div class="metal-card-front">
+                        <div class="metal-icon">🗿</div>
+                        <h3>Delhi Iron Pillar</h3>
+                        <p>Standing since 400 CE without rusting - a testament to advanced corrosion-resistant iron
+                            technology.</p>
+                    </div>
+                    <div class="metal-card-back">
+                        <h3>Technical Details</h3>
+                        <p><strong>Height:</strong> 7.21 meters</p>
+                        <p><strong>Weight:</strong> 6 tons</p>
+                        <p><strong>Composition:</strong> 98% wrought iron with high phosphorus content</p>
+                        <p><strong>Secret:</strong> Protective film of misawite (iron, oxygen, hydrogen compound)
+                            prevents rusting</p>
+                        <p><strong>Age:</strong> 1600+ years rust-free</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metal-card">
+                <div class="metal-card-inner">
+                    <div class="metal-card-front">
+                        <div class="metal-icon">⚔️</div>
+                        <h3>Wootz Steel</h3>
+                        <p>Legendary crucible steel that produced the finest blades in the ancient world, exported
+                            globally.</p>
+                    </div>
+                    <div class="metal-card-back">
+                        <h3>Technical Details</h3>
+                        <p><strong>Origin:</strong> South India (300 BCE)</p>
+                        <p><strong>Process:</strong> Crucible method with specific carbon content</p>
+                        <p><strong>Quality:</strong> Superior edge retention and hardness</p>
+                        <p><strong>Pattern:</strong> Characteristic Damascus patterns</p>
+                        <p><strong>Legacy:</strong> Basis for Damascus steel blades</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metal-card">
+                <div class="metal-card-inner">
+                    <div class="metal-card-front">
+                        <div class="metal-icon">🏺</div>
+                        <h3>Bronze Casting</h3>
+                        <p>Advanced lost-wax casting techniques created intricate bronze sculptures and idols.</p>
+                    </div>
+                    <div class="metal-card-back">
+                        <h3>Technical Details</h3>
+                        <p><strong>Technique:</strong> Cire perdue (lost-wax)</p>
+                        <p><strong>Era:</strong> Indus Valley Civilization onwards</p>
+                        <p><strong>Alloys:</strong> Precise copper-tin ratios</p>
+                        <p><strong>Detail:</strong> Microscopic precision in castings</p>
+                        <p><strong>Examples:</strong> Dancing Girl statue (2500 BCE)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metal-card">
+                <div class="metal-card-inner">
+                    <div class="metal-card-front">
+                        <div class="metal-icon">💎</div>
+                        <h3>Zinc Extraction</h3>
+                        <p>India was the first to develop distillation processes for zinc extraction centuries before
+                            Europe.</p>
+                    </div>
+                    <div class="metal-card-back">
+                        <h3>Technical Details</h3>
+                        <p><strong>Period:</strong> 12th century CE</p>
+                        <p><strong>Location:</strong> Zawar mines, Rajasthan</p>
+                        <p><strong>Method:</strong> Retort distillation process</p>
+                        <p><strong>Innovation:</strong> 400 years before Western discovery</p>
+                        <p><strong>Scale:</strong> Industrial-level production</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metal-card">
+                <div class="metal-card-inner">
+                    <div class="metal-card-front">
+                        <div class="metal-icon">👑</div>
+                        <h3>Gold Purification</h3>
+                        <p>Advanced techniques achieved 99.9% pure gold using traditional methods described in ancient
+                            texts.</p>
+                    </div>
+                    <div class="metal-card-back">
+                        <h3>Technical Details</h3>
+                        <p><strong>Method:</strong> Cupellation process</p>
+                        <p><strong>Purity:</strong> Up to 99.9% (24 karat)</p>
+                        <p><strong>Techniques:</strong> Fire assay and amalgamation</p>
+                        <p><strong>Documentation:</strong> Rasaratna Samuccaya texts</p>
+                        <p><strong>Applications:</strong> Jewelry and religious artifacts</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metal-card">
+                <div class="metal-card-inner">
+                    <div class="metal-card-front">
+                        <div class="metal-icon">🔔</div>
+                        <h3>Bell Metal Alloys</h3>
+                        <p>Perfect acoustic properties achieved through precise alloy compositions for temple bells and
+                            musical instruments.</p>
+                    </div>
+                    <div class="metal-card-back">
+                        <h3>Technical Details</h3>
+                        <p><strong>Composition:</strong> 78% copper, 22% tin</p>
+                        <p><strong>Properties:</strong> Optimal resonance frequency</p>
+                        <p><strong>Craftsmanship:</strong> Precise ratios for tone quality</p>
+                        <p><strong>Uses:</strong> Temple bells, cymbals, gongs</p>
+                        <p><strong>Legacy:</strong> Still used in traditional instruments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Applications -->
+    <section id="applications">
+        <h2 class="section-title">Modern Applications</h2>
+        <div class="applications-grid">
+            <div class="application-card">
+                <div class="app-icon">💻</div>
+                <h3>Binary Number System</h3>
+                <p class="ancient-tech">Ancient Concept: Pingala's Chandaḥśāstra (200 BCE) described binary patterns in
+                    Sanskrit prosody.</p>
+                <p class="modern-use">Modern Application: Foundation of all digital computing, programming, and data
+                    storage systems worldwide.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">🧮</div>
+                <h3>Zero & Place Value</h3>
+                <p class="ancient-tech">Ancient Concept: Brahmagupta (628 CE) established mathematical rules for zero
+                    and place value system.</p>
+                <p class="modern-use">Modern Application: Enables all modern mathematics, digital calculations, and
+                    computer science algorithms.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">🏥</div>
+                <h3>Plastic Surgery</h3>
+                <p class="ancient-tech">Ancient Concept: Sushruta (600 BCE) documented rhinoplasty and reconstructive
+                    surgery techniques.</p>
+                <p class="modern-use">Modern Application: Foundation of modern plastic surgery, reconstructive
+                    procedures, and cosmetic surgery.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">🌿</div>
+                <h3>Holistic Medicine</h3>
+                <p class="ancient-tech">Ancient Concept: Ayurveda's comprehensive approach to health, prevention, and
+                    natural healing.</p>
+                <p class="modern-use">Modern Application: Integrated medicine, preventive healthcare, pharmaceutical
+                    research, and wellness programs.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">🛰️</div>
+                <h3>Astronomical Calculations</h3>
+                <p class="ancient-tech">Ancient Concept: Aryabhata's precise calculations of planetary positions and
+                    eclipse predictions.</p>
+                <p class="modern-use">Modern Application: Satellite navigation, space missions, GPS systems, and
+                    astronomical research.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">🏗️</div>
+                <h3>Corrosion Resistance</h3>
+                <p class="ancient-tech">Ancient Concept: Delhi Iron Pillar's rust-resistant iron technology (400 CE).
+                </p>
+                <p class="modern-use">Modern Application: Materials science, anti-corrosion coatings, and preservation
+                    of metal structures.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">⚡</div>
+                <h3>Fast Calculations</h3>
+                <p class="ancient-tech">Ancient Concept: Vedic Mathematics sutras for rapid mental computation.</p>
+                <p class="modern-use">Modern Application: Algorithm optimization, computer arithmetic, and educational
+                    methodologies.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">🏛️</div>
+                <h3>Urban Planning</h3>
+                <p class="ancient-tech">Ancient Concept: Indus Valley Civilization's grid-pattern cities with advanced
+                    drainage (3000 BCE).</p>
+                <p class="modern-use">Modern Application: Sustainable urban design, sanitation systems, and smart city
+                    planning.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">📐</div>
+                <h3>Geometry & Architecture</h3>
+                <p class="ancient-tech">Ancient Concept: Sulba Sutras' geometric principles for temple and altar
+                    construction.</p>
+                <p class="modern-use">Modern Application: Architectural design, structural engineering, and
+                    computational geometry.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content" style="justify-content: center; text-align: center;">
+            <div class="footer-section" style="max-width: 800px; margin: 0 auto;">
+                <h4>About</h4>
+                <p>Preserving, documenting, and celebrating the rich scientific heritage of ancient India, this platform
+                    serves as a bridge between timeless wisdom and modern innovation. Dedicated to showcasing over 5,000
+                    years of India’s contributions to science, technology, mathematics, medicine, astronomy,
+                    architecture, and philosophy, our mission is to inspire future generations through the rediscovery
+                    of indigenous knowledge systems. By integrating historical insights with contemporary perspectives,
+                    we aim to promote awareness, research, and appreciation of India’s extraordinary intellectual legacy
+                    and its continuing relevance in shaping a sustainable and innovative future.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TattvaTech. Made with ❤️ by Swastik Mishra.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 100);
+        });
+
+        // Particle System
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Progress Bar
+        const progressBar = document.querySelector('.progress-bar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight);
+            progressBar.style.transform = `scaleX(${scrolled})`;
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Loading Animation
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 1500);
+        });
+
+        // Card Hover Effects
+        document.querySelectorAll('.scientist-card, .math-card, .application-card, .astro-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax Effect for Hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            const symbol = document.querySelector('.rotating-symbol');
+
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / 500);
+            }
+
+            if (symbol) {
+                symbol.style.transform = `rotateY(${scrolled * 0.5}deg) rotateZ(${scrolled * 0.2}deg)`;
+            }
+        });
+
+        // Interactive Timeline Dots Animation
+        document.querySelectorAll('.timeline-dot').forEach((dot, index) => {
+            setTimeout(() => {
+                dot.style.animation = 'pulse 2s infinite';
+            }, index * 200);
+        });
+
+        // Add pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0%, 100% {
+                    box-shadow: 0 0 20px var(--primary-gold);
+                    transform: translateX(-50%) scale(1);
+                }
+                50% {
+                    box-shadow: 0 0 40px var(--primary-gold);
+                    transform: translateX(-50%) scale(1.2);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 3D Tilt Effect on Cards
+        document.querySelectorAll('.scientist-card, .application-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // Section Reveal Animation
+        const sections = document.querySelectorAll('section');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 1s ease-out';
+            sectionObserver.observe(section);
+        });
+
+        // Dynamic Text Animation for Hero
+        const heroTitle = document.querySelector('.hero h1');
+        if (heroTitle) {
+            const text = heroTitle.textContent;
+            heroTitle.textContent = '';
+            let i = 0;
+
+            const typeWriter = () => {
+                if (i < text.length) {
+                    heroTitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+
+            setTimeout(typeWriter, 500);
+        }
+
+        // Floating Animation for Icons
+        document.querySelectorAll('.scientist-image, .app-icon, .metal-icon').forEach((icon, index) => {
+            icon.style.animation = `float 3s ease-in-out ${index * 0.2}s infinite`;
+        });
+
+        // Add floating keyframes
+        const floatingStyle = document.createElement('style');
+        floatingStyle.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(floatingStyle);
+
+        console.log('🕉️ Ancient Indian Science & Technology Portal Loaded');
+        console.log('✨ Experience 5000 years of scientific excellence');
+    </script>
+</body>
+
+</html>
