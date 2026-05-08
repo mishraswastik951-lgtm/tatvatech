@@ -511,7 +511,7 @@
         /* Scientists Grid */
         .scientists-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -526,6 +526,9 @@
             border: 1px solid rgba(212, 175, 55, 0.3);
             transition: all 0.5s ease;
             cursor: pointer;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .scientist-card::before {
@@ -632,7 +635,7 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: 30px;
         }
 
@@ -701,7 +704,7 @@
         /* Modern Applications Section */
         .applications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -763,7 +766,7 @@
         /* Metallurgy Section */
         .metallurgy-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -772,6 +775,7 @@
         .metal-card {
             perspective: 1000px;
             height: 400px;
+            max-width: 100%;
         }
 
         .metal-card-inner {
