@@ -1175,37 +1175,49 @@
                 font-size: 18px;
             }
 
-            section {
-                padding: 50px 15px;
+            /* TIMELINE — vertical single-column on mobile */
+            .timeline-container {
+                padding-left: 30px;
             }
 
-            /* Timeline — keep tree but compact */
-            .timeline-container {
-                padding: 0 10px;
+            .timeline-line {
+                left: 10px;
+                transform: none;
+            }
+
+            .timeline-dot {
+                left: 10px;
+                transform: none;
             }
 
             .timeline-item {
-                margin-bottom: 50px;
+                flex-direction: column !important;
+                align-items: flex-start;
+                margin-bottom: 40px;
+                padding-left: 30px;
+            }
+
+            .timeline-item:nth-child(even) {
+                flex-direction: column !important;
             }
 
             .timeline-content {
-                padding: 12px;
-                width: 44%;
+                width: 100% !important;
+                padding: 15px;
+                box-sizing: border-box;
             }
 
             .timeline-date {
                 font-size: 16px;
-                margin-bottom: 5px;
             }
 
             .timeline-content h3 {
-                font-size: 14px;
-                margin-bottom: 5px;
+                font-size: 16px;
             }
 
             .timeline-content p {
-                font-size: 12px;
-                line-height: 1.4;
+                font-size: 13px;
+                line-height: 1.5;
             }
 
             /* Scientists */
@@ -1214,10 +1226,10 @@
             }
 
             .scientist-card {
-                padding: 25px;
+                padding: 20px;
             }
 
-            /* Vedic Math Cards */
+            /* Vedic Math */
             .vedic-math-container {
                 grid-template-columns: 1fr;
             }
@@ -1231,13 +1243,14 @@
             }
 
             .math-card .formula {
-                font-size: 14px;
-                padding: 12px;
+                font-size: 13px;
+                padding: 10px;
+                word-break: break-word;
             }
 
             /* Interactive Demo */
             .interactive-demo {
-                padding: 30px 15px;
+                padding: 25px 15px;
             }
 
             /* Astronomy */
@@ -1252,7 +1265,7 @@
 
             .metal-card {
                 height: auto;
-                min-height: 300px;
+                min-height: 250px;
             }
 
             .metal-card-inner {
@@ -1265,17 +1278,15 @@
 
             .metal-card-front {
                 position: relative;
-                border-radius: 20px;
-                padding: 25px;
+                padding: 20px;
             }
 
             .metal-card-back {
                 position: relative;
-                backface-visibility: visible;
                 transform: none;
-                border-radius: 20px;
+                backface-visibility: visible;
                 padding: 20px;
-                margin-top: 10px;
+                margin-top: 8px;
             }
 
             /* Applications */
@@ -1284,35 +1295,40 @@
             }
 
             .application-card {
-                padding: 25px;
-            }
-
-            .app-icon {
-                font-size: 40px;
-            }
-
-            .application-card h3 {
-                font-size: 20px;
-            }
-
-            /* Calculator modal */
-            .calc-container {
-                width: 95vw;
                 padding: 20px;
             }
 
-            .calc-btn {
-                font-size: 18px;
-                padding: 12px 0;
+            .app-icon {
+                font-size: 36px;
             }
 
-            .calc-display {
-                font-size: 24px;
+            .application-card h3 {
+                font-size: 18px;
+            }
+
+            /* Footer */
+            footer {
+                padding: 30px 20px;
+            }
+
+            /* Calculator */
+            .calc-container {
+                width: 95vw;
                 padding: 15px;
             }
 
+            .calc-btn {
+                font-size: 16px;
+                padding: 10px 0;
+            }
+
+            .calc-display {
+                font-size: 22px;
+                padding: 12px;
+            }
+
             .calc-grid {
-                gap: 10px;
+                gap: 8px;
             }
         }
 
