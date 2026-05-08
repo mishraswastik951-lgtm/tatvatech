@@ -58,28 +58,67 @@
             opacity: 0.5;
         }
 
-        /* Animated Background */
-        .bg-pattern {
+        /* Live Wallpaper Background */
+        .live-wallpaper {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
-            background-image:
-                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--primary-gold) 35px, var(--primary-gold) 36px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--ancient-bronze) 35px, var(--ancient-bronze) 36px);
-            animation: patternMove 20s linear infinite;
+            width: 100vw;
+            height: 120vh;
+            z-index: -2;
+            overflow: hidden;
+            background: var(--dark-bg);
         }
 
-        @keyframes patternMove {
-            0% {
-                transform: translate(0, 0);
-            }
+        .blob {
+            position: absolute;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: moveBlob 20s infinite alternate ease-in-out;
+            border-radius: 50%;
+        }
 
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: rgba(212, 175, 55, 0.4);
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            top: 40%;
+            right: -20%;
+            width: 60vw;
+            height: 60vw;
+            background: rgba(255, 107, 53, 0.3);
+            animation-duration: 25s;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            bottom: -20%;
+            left: 20%;
+            width: 55vw;
+            height: 55vw;
+            background: rgba(74, 14, 78, 0.4);
+            animation-duration: 30s;
+            animation-delay: -10s;
+        }
+
+        @keyframes moveBlob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(10vw, 15vh) scale(1.1);
+            }
+            66% {
+                transform: translate(-15vw, 5vh) scale(0.9);
+            }
             100% {
-                transform: translate(70px, 70px);
+                transform: translate(5vw, -10vh) scale(1.2);
             }
         }
 
@@ -928,6 +967,136 @@
             opacity: 0.7;
         }
 
+        /* Calculator Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .calc-container {
+            background: linear-gradient(135deg, rgba(74, 14, 78, 0.9), rgba(10, 10, 10, 0.95));
+            border: 2px solid var(--primary-gold);
+            border-radius: 20px;
+            padding: 30px;
+            width: 450px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .calc-container {
+            transform: translateY(0) scale(1);
+        }
+
+        .vedic-steps {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: var(--text-light);
+            display: none;
+            text-align: left;
+            border-left: 3px solid var(--deep-orange);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .vedic-steps strong {
+            color: var(--primary-gold);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: var(--primary-gold);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--deep-orange);
+        }
+
+        .calc-display {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 32px;
+            color: var(--primary-gold);
+            text-align: right;
+            margin-bottom: 20px;
+            min-height: 80px;
+            word-wrap: break-word;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .calc-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--text-light);
+            font-size: 24px;
+            padding: 15px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Philosopher', sans-serif;
+        }
+
+        .calc-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .calc-btn.operator {
+            color: var(--deep-orange);
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .calc-btn.equals {
+            grid-column: span 2;
+            background: linear-gradient(45deg, var(--primary-gold), var(--ancient-bronze));
+            color: var(--dark-bg);
+            font-weight: bold;
+        }
+
+        .calc-btn.clear {
+            grid-column: span 2;
+            color: var(--sacred-red);
+            background: rgba(139, 0, 0, 0.1);
+        }
+
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -1115,7 +1284,11 @@
     <div class="cursor-follower"></div>
 
     <!-- Background Elements -->
-    <div class="bg-pattern"></div>
+    <div class="live-wallpaper">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
     <div class="particles" id="particles"></div>
 
     <!-- Navigation -->
@@ -1232,7 +1405,16 @@
                     <div class="timeline-date">628 CE</div>
                     <h3>Brahmagupta's Mathematics</h3>
                     <p>First to give rules for computing with zero, negative numbers, and solutions to quadratic
-                        equations. Foundation for modern algebra.</p>
+                        equations. His work <em>Brahmasphutasiddhanta</em> was the first text to treat zero as a number in its own right. Foundation for modern algebra.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1350 CE</div>
+                    <h3>Kerala School — Infinite Series</h3>
+                    <p>Madhava of Sangamagrama discovered infinite series for π, sine, and cosine — the core ideas of calculus — over 300 years before Newton and Leibniz. He calculated π to 11 decimal places: 3.14159265359.</p>
                 </div>
                 <div class="timeline-dot"></div>
             </div>
@@ -1362,6 +1544,62 @@
                     </ul>
                 </div>
             </div>
+            <!-- Bhaskaracharya -->
+            <div class="scientist-card">
+                <div class="scientist-image">🌐</div>
+                <h3>Bhaskaracharya (Bhaskara II)</h3>
+                <div class="subtitle">1114 CE - 1185 CE</div>
+                <p>One of the greatest mathematicians of medieval India, Bhaskara's <em>Siddhanta Shiromani</em> covered arithmetic, algebra, mathematics of planets, and spheres with unprecedented depth.</p>
+                <div class="achievements">
+                    <h4>Major Contributions:</h4>
+                    <ul>
+                        <li>Early concepts of differential calculus and instantaneous motion</li>
+                        <li>Proposed that objects fall towards Earth (early concept of gravity)</li>
+                        <li>Solved Pell's equation 500 years before European mathematicians</li>
+                        <li>Introduced the concept of division by zero tending to infinity</li>
+                        <li>Accurate computation of the sidereal year (365.2588 days)</li>
+                        <li>Authored Lilavati — most celebrated mathematics textbook of its era</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Kanada -->
+            <div class="scientist-card">
+                <div class="scientist-image">⚛️</div>
+                <h3>Maharishi Kanada</h3>
+                <div class="subtitle">600 BCE</div>
+                <p>Founder of the Vaisheshika school of philosophy, Kanada proposed one of the earliest known atomic theories in human history — the concept of <em>Anu</em> (indivisible particle).</p>
+                <div class="achievements">
+                    <h4>Major Contributions:</h4>
+                    <ul>
+                        <li>Proposed that all matter is made of indivisible atoms (Anu)</li>
+                        <li>Atoms of same substance combine to form larger units (Dvyanuka)</li>
+                        <li>Described inertia: objects at rest stay at rest without external force</li>
+                        <li>Classified matter into nine elements including space, time, and motion</li>
+                        <li>Authored the Vaisheshika Sutra — foundational text of atomic theory</li>
+                        <li>Influenced later natural philosophers across Asia and the Middle East</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Nagarjuna -->
+            <div class="scientist-card">
+                <div class="scientist-image">⚗️</div>
+                <h3>Nagarjuna</h3>
+                <div class="subtitle">10th Century CE</div>
+                <p>Ancient Indian chemist and metallurgist whose work <em>Rasaratnakara</em> pioneered the chemistry of metals, alloys, and medicinal preparations far ahead of the Western world.</p>
+                <div class="achievements">
+                    <h4>Major Contributions:</h4>
+                    <ul>
+                        <li>Authored Rasaratnakara — detailed treatise on extraction of metals</li>
+                        <li>Described preparation of mercury compounds and amalgams</li>
+                        <li>Pioneered distillation, sublimation, and calcination techniques</li>
+                        <li>Documented processes for converting base metals for medicinal use</li>
+                        <li>Developed early pharmaceutical preparations from minerals</li>
+                        <li>Laid foundations of Indian alchemy (Rasashastra)</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1410,9 +1648,25 @@
                 <p>Vedic mathematics provides intuitive methods for solving quadratic equations and polynomial
                     operations through geometric visualization.</p>
             </div>
+
+            <div class="math-card">
+                <h3>∞ Madhava's Infinite Series</h3>
+                <div class="formula">π/4 = 1 − 1/3 + 1/5 − 1/7 + ... (Gregory-Leibniz Series)</div>
+                <p>Madhava of Sangamagrama (1350 CE) discovered this infinite series for π, along with infinite series for sine and cosine — the cornerstone of calculus — 300 years before Newton.</p>
+            </div>
+
+            <div class="math-card">
+                <h3>🔵 Zero & Decimal System</h3>
+                <div class="formula">0 + n = n, n × 0 = 0, n/0 = ∞ (Bhaskara)</div>
+                <p>The decimal positional system and rules for Zero, developed from Pingala's binary notation (200 BCE) to Brahmagupta's formal arithmetic (628 CE), became the global standard and underpins all modern mathematics.</p>
+            </div>
         </div>
 
-
+        <div class="interactive-demo">
+            <h3 style="color: var(--primary-gold); margin-bottom: 20px; font-size: 32px;">Try Vedic Math Calculator</h3>
+            <p style="margin-bottom: 30px; font-size: 18px;">Experience a calculator inspired by ancient computational techniques.</p>
+            <button class="demo-button" id="launch-calc-btn">Launch Calculator</button>
+        </div>
     </section>
 
     <!-- Astronomy Section -->
@@ -1453,7 +1707,17 @@
                 <div class="astro-card">
                     <h3>⏰ Time Measurement</h3>
                     <p>Developed precise time units from Paramanu (26.3 microseconds) to Kalpa (4.32 billion years),
-                        demonstrating understanding of vast cosmic timescales.</p>
+                        demonstrating understanding of vast cosmic timescales that aligns closely with modern scientific estimates.</p>
+                </div>
+
+                <div class="astro-card">
+                    <h3>🏛️ Jantar Mantar Observatories</h3>
+                    <p>Maharaja Jai Singh II built five monumental stone observatories (1724–1735 CE). The Samrat Yantra sundial at Jaipur is 27 m tall and accurate to 2 seconds — a marvel of naked-eye astronomical engineering.</p>
+                </div>
+
+                <div class="astro-card">
+                    <h3>📐 Surya Siddhanta</h3>
+                    <p>This 4th-century CE text calculated Earth's diameter as 7,840 miles (actual: 7,926 miles — 99% accurate), the distance to the Moon as 253,000 miles, and introduced trigonometric functions for the first time in recorded history.</p>
                 </div>
             </div>
 
@@ -1659,9 +1923,30 @@
                 <div class="app-icon">📐</div>
                 <h3>Geometry & Architecture</h3>
                 <p class="ancient-tech">Ancient Concept: Sulba Sutras' geometric principles for temple and altar
-                    construction.</p>
+                    construction, including the Pythagorean theorem 300 years before Pythagoras.</p>
                 <p class="modern-use">Modern Application: Architectural design, structural engineering, and
                     computational geometry.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">🗣️</div>
+                <h3>Programming Languages</h3>
+                <p class="ancient-tech">Ancient Concept: Panini's <em>Ashtadhyayi</em> (450 BCE) defined Sanskrit grammar using 3,959 algebraic rules — the world's first formal generative grammar.</p>
+                <p class="modern-use">Modern Application: Panini's rule-based grammar directly inspired the Backus-Naur Form (BNF), the notation used to define every modern programming language including Python, Java, and C.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">🧬</div>
+                <h3>Atomic Theory</h3>
+                <p class="ancient-tech">Ancient Concept: Maharishi Kanada's <em>Vaisheshika Sutra</em> (600 BCE) proposed that matter consists of indestructible atoms (Anu) that combine to form all substances.</p>
+                <p class="modern-use">Modern Application: Modern nuclear physics, quantum mechanics, and the concept of the atom as the fundamental unit of matter directly echoes Kanada's foundational ideas.</p>
+            </div>
+
+            <div class="application-card">
+                <div class="app-icon">📡</div>
+                <h3>Wireless Transmission</h3>
+                <p class="ancient-tech">Ancient Concept: Jagadish Chandra Bose (1895) demonstrated wireless radio wave transmission — before Marconi filed his patent — and invented the crescograph to measure plant growth.</p>
+                <p class="modern-use">Modern Application: Bose's millimetre wave research laid the groundwork for modern Wi-Fi, radar technology, and all wireless communication standards.</p>
             </div>
         </div>
     </section>
@@ -1681,9 +1966,42 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 TattvaTech. Made by Swastik Mishra.</p>
+            <p>&copy; 2026 TattvaTech. Made with ❤️ by Swastik Mishra.</p>
         </div>
     </footer>
+
+    <!-- Calculator Modal -->
+    <div class="modal-overlay" id="calc-modal">
+        <div class="calc-container">
+            <span class="close-btn" id="close-calc">&times;</span>
+            <h3 style="color: var(--primary-gold); margin-bottom: 15px; text-align: center; font-family: 'Cinzel', serif;">Vedic Calculator</h3>
+            <div class="calc-display" id="calc-display">0</div>
+            <div id="vedic-steps" class="vedic-steps"></div>
+            <div class="calc-grid">
+                <button class="calc-btn clear" onclick="calcClear()">AC</button>
+                <button class="calc-btn operator" onclick="calcAppend('/')">&divide;</button>
+                <button class="calc-btn operator" onclick="calcAppend('*')">&times;</button>
+                
+                <button class="calc-btn" onclick="calcAppend('7')">7</button>
+                <button class="calc-btn" onclick="calcAppend('8')">8</button>
+                <button class="calc-btn" onclick="calcAppend('9')">9</button>
+                <button class="calc-btn operator" onclick="calcAppend('-')">&minus;</button>
+                
+                <button class="calc-btn" onclick="calcAppend('4')">4</button>
+                <button class="calc-btn" onclick="calcAppend('5')">5</button>
+                <button class="calc-btn" onclick="calcAppend('6')">6</button>
+                <button class="calc-btn operator" onclick="calcAppend('+')">+</button>
+                
+                <button class="calc-btn" onclick="calcAppend('1')">1</button>
+                <button class="calc-btn" onclick="calcAppend('2')">2</button>
+                <button class="calc-btn" onclick="calcAppend('3')">3</button>
+                <button class="calc-btn equals" style="grid-row: span 2;" onclick="calcCalculate()">=</button>
+                
+                <button class="calc-btn" style="grid-column: span 2;" onclick="calcAppend('0')">0</button>
+                <button class="calc-btn" onclick="calcAppend('.')">.</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Custom Cursor
@@ -1745,12 +2063,20 @@
             });
         });
 
-        // Progress Bar
+        // Progress Bar and Live Wallpaper Parallax
         const progressBar = document.querySelector('.progress-bar');
+        const liveWallpaper = document.querySelector('.live-wallpaper');
         window.addEventListener('scroll', () => {
             const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / windowHeight);
-            progressBar.style.transform = `scaleX(${scrolled})`;
+            const scrollPercent = window.scrollY / windowHeight;
+            
+            // Update progress bar
+            progressBar.style.transform = `scaleX(${scrollPercent})`;
+            
+            // Parallax background (moves up to 15vh)
+            if (liveWallpaper) {
+                liveWallpaper.style.transform = `translateY(-${scrollPercent * 15}vh)`;
+            }
         });
 
         // Scroll Animations
@@ -1766,6 +2092,134 @@
                 }
             });
         }, observerOptions);
+
+        // Calculator Logic
+        const calcModal = document.getElementById('calc-modal');
+        const launchCalcBtn = document.getElementById('launch-calc-btn');
+        const closeCalcBtn = document.getElementById('close-calc');
+        const calcDisplay = document.getElementById('calc-display');
+        let calcExpression = '';
+
+        if (launchCalcBtn) {
+            launchCalcBtn.addEventListener('click', () => {
+                calcModal.classList.add('active');
+            });
+        }
+
+        if (closeCalcBtn) {
+            closeCalcBtn.addEventListener('click', () => {
+                calcModal.classList.remove('active');
+            });
+        }
+
+        // Close on outside click
+        calcModal.addEventListener('click', (e) => {
+            if (e.target === calcModal) {
+                calcModal.classList.remove('active');
+            }
+        });
+
+        function calcAppend(val) {
+            if (calcExpression === 'Error' || calcExpression === 'Infinity' || calcExpression === 'NaN') {
+                calcExpression = '';
+            }
+            calcExpression += val;
+            updateDisplay();
+        }
+
+        const vedicSteps = document.getElementById('vedic-steps');
+
+        function calcClear() {
+            calcExpression = '';
+            if (vedicSteps) vedicSteps.style.display = 'none';
+            updateDisplay();
+        }
+
+        function calcCalculate() {
+            try {
+                if (!calcExpression) return;
+                if (/[^0-9\+\-\*\/\.\(\) ]/.test(calcExpression)) {
+                    throw new Error("Invalid characters");
+                }
+
+                const multMatch = calcExpression.match(/^(\d+)\s*\*\s*(\d+)$/);
+                const addSubMatch = calcExpression.match(/^(\d+(?:\.\d+)?)\s*([\+\-])\s*(\d+(?:\.\d+)?)$/);
+                
+                let stepHtml = '';
+                const result = new Function('return ' + calcExpression)();
+
+                if (multMatch) {
+                    const a = parseInt(multMatch[1]);
+                    const b = parseInt(multMatch[2]);
+                    
+                    if (a === b && a % 10 === 5) {
+                        const tens = Math.floor(a / 10);
+                        const leftPart = tens * (tens + 1);
+                        stepHtml = `<strong>Ekadhikena Purvena (Squaring ending in 5)</strong>\nStep 1: Multiply tens digit (${tens}) by next number (${tens + 1}) = ${leftPart}\nStep 2: Append 25 (5×5)\nResult: ${leftPart}25`;
+                    }
+                    else if (a > 85 && a < 115 && b > 85 && b < 115) {
+                        const base = 100;
+                        const diffA = a - base;
+                        const diffB = b - base;
+                        const left = a + diffB;
+                        const right = Math.abs(diffA * diffB);
+                        const rightStr = right.toString().padStart(2, '0');
+                        stepHtml = `<strong>Nikhilam Sutra (Base 100)</strong>\nNumbers: ${a} (${diffA > 0 ? '+'+diffA : diffA}), ${b} (${diffB > 0 ? '+'+diffB : diffB})\nStep 1: Cross add -> ${a} + (${diffB}) = ${left}\nStep 2: Multiply diffs -> (${diffA}) × (${diffB}) = ${rightStr}\nResult: Combine ${left} and ${rightStr} -> ${result}`;
+                    }
+                    else if (a >= 10 && a < 100 && b >= 10 && b < 100) {
+                        const a1 = Math.floor(a / 10), a0 = a % 10;
+                        const b1 = Math.floor(b / 10), b0 = b % 10;
+                        const r = a0 * b0;
+                        const m = a1 * b0 + a0 * b1;
+                        const l = a1 * b1;
+                        stepHtml = `<strong>Urdhva Tiryagbhyam (Vertically & Crosswise)</strong>\nVertical Right: ${a0}×${b0} = ${r}\nCrosswise: (${a1}×${b0}) + (${a0}×${b1}) = ${m}\nVertical Left: ${a1}×${b1} = ${l}\n(Apply carryovers from right to left)\nResult: ${result}`;
+                    }
+                } else if (addSubMatch) {
+                    const aStr = addSubMatch[1];
+                    const op = addSubMatch[2];
+                    const bStr = addSubMatch[3];
+                    
+                    const getDigitSum = (num) => {
+                        let sum = num.replace(/[\.\-]/g,'').split('').reduce((acc, val) => acc + parseInt(val), 0);
+                        return sum % 9 || 9;
+                    };
+                    
+                    const dsA = getDigitSum(aStr);
+                    const dsB = getDigitSum(bStr);
+                    let dsExpected = op === '+' ? dsA + dsB : dsA - dsB;
+                    if (dsExpected <= 0) dsExpected += 9;
+                    dsExpected = dsExpected % 9 || 9;
+                    
+                    const dsResult = getDigitSum(result.toString());
+                    
+                    stepHtml = `<strong>Digit Sum Verification (Beejank)</strong>\nDigit sum of ${aStr} = ${dsA}\nDigit sum of ${bStr} = ${dsB}\nExpected sum: ${dsA} ${op} ${dsB} ≡ ${dsExpected}\nActual result sum: ${dsResult}\n${dsExpected === dsResult ? '✓ Verification Successful' : '✗ Verification Failed'}`;
+                }
+                
+                if (stepHtml) {
+                    vedicSteps.innerHTML = stepHtml.replace(/\n/g, '<br>');
+                    vedicSteps.style.display = 'block';
+                } else {
+                    vedicSteps.style.display = 'none';
+                }
+
+                if (Number.isFinite(result)) {
+                    calcExpression = parseFloat(result.toFixed(8)).toString();
+                } else {
+                    calcExpression = 'Error';
+                }
+            } catch (e) {
+                calcExpression = 'Error';
+                if (vedicSteps) vedicSteps.style.display = 'none';
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            let visual = calcExpression
+                .replace(/\*/g, '×')
+                .replace(/\//g, '÷');
+            calcDisplay.textContent = visual || '0';
+        }
 
         // Observe timeline items
         document.querySelectorAll('.timeline-item').forEach(item => {
