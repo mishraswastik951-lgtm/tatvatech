@@ -1127,11 +1127,15 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 48px;
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
             }
 
             .section-title {
-                font-size: 40px;
+                font-size: 28px;
             }
 
             nav {
@@ -1168,37 +1172,143 @@
             }
 
             section {
-                padding: 60px 20px;
+                padding: 50px 15px;
+            }
+
+            /* Timeline — keep tree but compact */
+            .timeline-container {
+                padding: 0 10px;
+            }
+
+            .timeline-item {
+                margin-bottom: 50px;
             }
 
             .timeline-content {
-                padding: 15px;
-                width: 45%;
+                padding: 12px;
+                width: 44%;
             }
 
             .timeline-date {
-                font-size: 20px;
+                font-size: 16px;
                 margin-bottom: 5px;
             }
 
             .timeline-content h3 {
-                font-size: 18px;
+                font-size: 14px;
                 margin-bottom: 5px;
             }
 
             .timeline-content p {
-                font-size: 14px;
+                font-size: 12px;
                 line-height: 1.4;
             }
 
+            /* Scientists */
+            .scientists-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .scientist-card {
+                padding: 25px;
+            }
+
+            /* Vedic Math Cards */
+            .vedic-math-container {
+                grid-template-columns: 1fr;
+            }
+
+            .math-card {
+                padding: 20px;
+            }
+
+            .math-card h3 {
+                font-size: 20px;
+            }
+
+            .math-card .formula {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            /* Interactive Demo */
+            .interactive-demo {
+                padding: 30px 15px;
+            }
+
+            /* Astronomy */
             .constellation {
                 grid-template-columns: 1fr;
             }
 
-            .scientists-grid,
-            .applications-grid,
+            /* Metallurgy */
             .metallurgy-showcase {
                 grid-template-columns: 1fr;
+            }
+
+            .metal-card {
+                height: auto;
+                min-height: 300px;
+            }
+
+            .metal-card-inner {
+                transform-style: flat;
+            }
+
+            .metal-card:hover .metal-card-inner {
+                transform: none;
+            }
+
+            .metal-card-front {
+                position: relative;
+                border-radius: 20px;
+                padding: 25px;
+            }
+
+            .metal-card-back {
+                position: relative;
+                backface-visibility: visible;
+                transform: none;
+                border-radius: 20px;
+                padding: 20px;
+                margin-top: 10px;
+            }
+
+            /* Applications */
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .application-card {
+                padding: 25px;
+            }
+
+            .app-icon {
+                font-size: 40px;
+            }
+
+            .application-card h3 {
+                font-size: 20px;
+            }
+
+            /* Calculator modal */
+            .calc-container {
+                width: 95vw;
+                padding: 20px;
+            }
+
+            .calc-btn {
+                font-size: 18px;
+                padding: 12px 0;
+            }
+
+            .calc-display {
+                font-size: 24px;
+                padding: 15px;
+            }
+
+            .calc-grid {
+                gap: 10px;
             }
         }
 
