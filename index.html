@@ -397,16 +397,16 @@
 
         /* Section Styles */
         section {
-            min-height: 100vh;
-            padding: 100px 50px;
+            min-height: auto;
+            padding: clamp(40px, 8vw, 100px) clamp(15px, 5vw, 50px);
             position: relative;
         }
 
         .section-title {
             font-family: 'Cinzel', serif;
-            font-size: 60px;
+            font-size: clamp(28px, 6vw, 60px);
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: clamp(30px, 5vw, 80px);
             background: linear-gradient(45deg, var(--primary-gold), var(--deep-orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -511,7 +511,7 @@
         /* Scientists Grid */
         .scientists-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -526,6 +526,9 @@
             border: 1px solid rgba(212, 175, 55, 0.3);
             transition: all 0.5s ease;
             cursor: pointer;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .scientist-card::before {
@@ -632,7 +635,7 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: 30px;
         }
 
@@ -701,7 +704,7 @@
         /* Modern Applications Section */
         .applications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -763,7 +766,7 @@
         /* Metallurgy Section */
         .metallurgy-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -772,6 +775,7 @@
         .metal-card {
             perspective: 1000px;
             height: 400px;
+            max-width: 100%;
         }
 
         .metal-card-inner {
@@ -832,7 +836,7 @@
 
         .constellation {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 40px;
             margin-bottom: 60px;
         }
@@ -1126,22 +1130,11 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .section-title {
-                font-size: 40px;
-            }
-
-            nav {
-                padding: 15px 20px;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 16px; }
+            .section-title { font-size: 28px; }
+            nav { padding: 15px 20px; }
+            .menu-toggle { display: flex; }
             .nav-links {
                 position: fixed;
                 top: 0;
@@ -1158,61 +1151,45 @@
                 border-left: 1px solid rgba(212, 175, 55, 0.3);
                 backdrop-filter: blur(10px);
             }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 18px; }
 
-            .nav-links.active {
-                right: 0;
-            }
+            /* TIMELINE — vertical single-column on mobile */
+            .timeline-container { padding-left: 30px; }
+            .timeline-line { left: 10px; transform: none; }
+            .timeline-dot { left: 10px; transform: none; }
+            .timeline-item { flex-direction: column !important; align-items: flex-start; margin-bottom: 40px; padding-left: 30px; }
+            .timeline-item:nth-child(even) { flex-direction: column !important; }
+            .timeline-content { width: 100% !important; padding: 15px; box-sizing: border-box; }
+            .timeline-date { font-size: 16px; }
+            .timeline-content h3 { font-size: 16px; }
+            .timeline-content p { font-size: 13px; line-height: 1.5; }
 
-            .nav-links a {
-                font-size: 18px;
-            }
-
-            .timeline-content {
-                padding: 15px;
-                width: 45%;
-            }
-
-            .timeline-date {
-                font-size: 20px;
-                margin-bottom: 5px;
-            }
-
-            .timeline-content h3 {
-                font-size: 16px;
-                margin-bottom: 5px;
-            }
-
-            .timeline-content p {
-                font-size: 12px;
-            }
-
-            .scientists-grid {
+            /* All Grids to Single Column */
+            .scientists-grid, .vedic-math-container, .applications-grid, .metallurgy-showcase, .constellation {
                 grid-template-columns: 1fr;
             }
 
-            .scientist-card {
-                padding: 20px;
-            }
+            .scientist-card, .math-card, .application-card, .astro-card { padding: 20px; }
+            .math-card h3 { font-size: 20px; }
+            .math-card .formula { font-size: 13px; padding: 10px; word-break: break-word; }
+            .interactive-demo { padding: 25px 15px; }
+
+            /* Metallurgy Specifics */
+            .metal-card { height: auto; min-height: 250px; }
+            .metal-card-inner { transform-style: flat; }
+            .metal-card:hover .metal-card-inner { transform: none; }
+            .metal-card-front { position: relative; padding: 20px; }
+            .metal-card-back { position: relative; transform: none; backface-visibility: visible; padding: 20px; margin-top: 8px; }
+            .app-icon { font-size: 36px; }
+            .application-card h3 { font-size: 18px; }
+            footer { padding: 30px 20px; }
 
             /* Calculator */
-            .calc-container {
-                width: 95vw;
-                padding: 15px;
-            }
-
-            .calc-btn {
-                font-size: 16px;
-                padding: 10px 0;
-            }
-
-            .calc-display {
-                font-size: 22px;
-                padding: 12px;
-            }
-
-            .calc-grid {
-                gap: 8px;
-            }
+            .calc-container { width: 95vw; padding: 15px; }
+            .calc-btn { font-size: 16px; padding: 10px 0; }
+            .calc-display { font-size: 22px; padding: 12px; }
+            .calc-grid { gap: 8px; }
         }
 
         /* Loading Animation */
@@ -1988,13 +1965,26 @@
         });
 
         // Scroll Animations
+        const isMobile = window.innerWidth <= 768;
+        const observerOptions = {
+            threshold: isMobile ? 0.05 : 0.2,
+            rootMargin: isMobile ? '0px 0px 0px 0px' : '0px 0px -100px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
+        }, observerOptions);
+
+        // Fallback: force all timeline items visible after 3s (handles mobile edge cases)
+        setTimeout(() => {
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.classList.add('visible');
+            });
+        }, 3000);
 
         // Calculator Logic
         const calcModal = document.getElementById('calc-modal');
