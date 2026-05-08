@@ -774,7 +774,7 @@
 
         .metal-card {
             perspective: 1000px;
-            height: 400px;
+            height: 480px; /* Increased from 400px to prevent desktop text overlap */
             max-width: 100%;
         }
 
@@ -800,7 +800,9 @@
             padding: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* Changed from center to prevent vertical spillage */
+            align-items: center;
+            text-align: center;
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
@@ -1176,11 +1178,12 @@
             .interactive-demo { padding: 25px 15px; }
 
             /* Metallurgy Specifics */
-            .metal-card { height: auto; min-height: 250px; }
-            .metal-card-inner { transform-style: flat; }
+            .metal-card { height: auto; min-height: none; }
+            .metal-card-inner { transform-style: flat; height: auto; }
             .metal-card:hover .metal-card-inner { transform: none; }
-            .metal-card-front { position: relative; padding: 20px; }
-            .metal-card-back { position: relative; transform: none; backface-visibility: visible; padding: 20px; margin-top: 8px; }
+            .metal-card-front { position: relative; padding: 30px 20px; height: auto; justify-content: flex-start; }
+            .metal-card-back { position: relative; transform: none; backface-visibility: visible; padding: 30px 20px; margin-top: 15px; height: auto; justify-content: flex-start; }
+            .metal-icon { font-size: 50px; margin-bottom: 15px; }
             .app-icon { font-size: 36px; }
             .application-card h3 { font-size: 18px; }
             footer { padding: 30px 20px; }
