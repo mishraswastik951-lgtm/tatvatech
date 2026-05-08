@@ -397,16 +397,16 @@
 
         /* Section Styles */
         section {
-            min-height: 100vh;
-            padding: 100px 50px;
+            min-height: auto;
+            padding: clamp(40px, 8vw, 100px) clamp(15px, 5vw, 50px);
             position: relative;
         }
 
         .section-title {
             font-family: 'Cinzel', serif;
-            font-size: 60px;
+            font-size: clamp(28px, 6vw, 60px);
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: clamp(30px, 5vw, 80px);
             background: linear-gradient(45deg, var(--primary-gold), var(--deep-orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -2194,9 +2194,10 @@
         });
 
         // Scroll Animations
+        const isMobile = window.innerWidth <= 768;
         const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: isMobile ? 0.05 : 0.2,
+            rootMargin: isMobile ? '0px 0px 0px 0px' : '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -2206,6 +2207,13 @@
                 }
             });
         }, observerOptions);
+
+        // Fallback: force all timeline items visible after 3s (handles mobile edge cases)
+        setTimeout(() => {
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.classList.add('visible');
+            });
+        }, 3000);
 
         // Calculator Logic
         const calcModal = document.getElementById('calc-modal');
